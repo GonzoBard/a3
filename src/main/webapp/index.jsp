@@ -35,8 +35,8 @@
             <div class="add" onclick="open_modal()">
                 <img src="/pic/create.svg">&nbsp;<span>create</span>
             </div>
-            <span style="padding-left: 40px">Search:</span>&nbsp;<input>&nbsp;<a href="http://google.ru"
-                                                                                 target="_blank" title="search"><img
+            <span style="padding-left: 40px">Search</span>&nbsp;<input>&nbsp;<a href="http://google.ru"
+                                                                                target="_blank" title="search"><img
                 src="/pic/search.svg"></a>
         </div>
     </div>
@@ -51,28 +51,27 @@
     <div class="modal-content">
         <span class="closeModal" onclick="close_modal()">&nbsp;X&nbsp;</span><br>
         <div class="field">
-            <span class="label">title:</span>
+            <span class="label">title</span>
             <span class="data"><input></span>
         </div>
         <div class="field">
-            <span class="label">description:</span>
+            <span class="label">description</span>
             <span class="data"><input></span>
         </div>
         <div class="field">
-            <span class="label">author:</span>
+            <span class="label">author</span>
             <span class="data"><input></span>
         </div>
         <div class="field">
-            <span class="label">isbn:</span>
+            <span class="label">isbn</span>
             <span class="data"><input></span>
         </div>
         <div class="field">
-            <span class="label">printYear:</span>
+            <span class="label">printYear</span>
             <span class="data"><input></span>
         </div>
-        <div class="field">
-            <span class="label">readAlready:</span>
-            <span class="data"><input></span>
+        <div class="button">
+            <button >Записать</button>
         </div>
     </div>
 
