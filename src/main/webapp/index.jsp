@@ -5,7 +5,8 @@
     <title>app index</title>
 </head>
 <body>
-hello, world<br>
-now: ${time}
+
+
+
 </body>
 </html>
