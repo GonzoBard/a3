@@ -1,0 +1,61 @@
+body {
+    height: 100%;
+    font-size: 16px;
+    font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding-top: 1%;
+    width: 90%;
+    height: 80%;
+}
+
+.header {
+    padding: 3px;
+    border: 1px solid red;
+}
+
+.items {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.items div.add {
+    display: inline-block; /* div width by content */
+}
+
+.items div.add:hover {
+    background-color: #ffffab;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.items a {
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+}
+
+.items img {
+    width: 20px;
+}
+
+.items input {
+    width: 70%;
+}
+
+.content {
+    margin: 3px 0 3px;
+    padding: 3px;
+    border: 1px solid blue;
+
+}
+
