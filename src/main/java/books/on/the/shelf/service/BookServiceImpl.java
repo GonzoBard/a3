@@ -23,8 +23,6 @@ public class BookServiceImpl implements BookService
     @Transactional
     public void create(Book book)
     {
-        if (book.getPrintYear() == null)
-            book.setPrintYear(0);
         book.setReadAlready(false);
         dao.save(book);
     }
@@ -33,6 +31,8 @@ public class BookServiceImpl implements BookService
     @Transactional
     public void update(Book book)
     {
+        if (book.getReadAlready() == null)
+            book.setReadAlready(false);
         dao.save(book);
     }
 
@@ -50,9 +50,9 @@ public class BookServiceImpl implements BookService
 
     @Override
     @Transactional
-    public void delete(Book book)
+    public void delete(Long id)
     {
-        dao.delete(book);
+        dao.delete(id);
     }
 
 }

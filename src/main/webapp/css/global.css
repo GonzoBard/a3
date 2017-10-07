@@ -10,6 +10,10 @@ body, input, button {
     font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, sans-serif;
 }
 
+.hidden_element {
+    display: none;
+}
+
 .wrapper {
     margin: 0 auto;
     padding-top: 1%;
@@ -19,7 +23,7 @@ body, input, button {
 
 .header {
     padding: 3px;
-    border: 1px solid red;
+    border: 0px solid red;
 }
 
 .items {
@@ -53,9 +57,9 @@ body, input, button {
 }
 
 .content {
-    margin: 3px 0 3px;
+    margin: 7px 0 3px;
     padding: 3px;
-    border: 1px solid blue;
+    border: 0px solid blue;
 
 }
 
@@ -112,6 +116,10 @@ body, input, button {
     padding: 3px;
 }
 
+.modal .field#book_readAlready {
+    float: left;
+}
+
 .modal .label {
     display: inline-block;
     width: 150px;
@@ -124,17 +132,20 @@ body, input, button {
 }
 
 .modal .button {
-    text-align: center;
+    text-align: right;
     margin: 20px 0 0;
+
 }
 
 .closeModal {
+    position: relative;
     color: #aaa;
     float: right;
     font-size: 15px;
     font-weight: bold;
     border: 1px solid #aaa;
     border-radius: 3px;
+    text-align: center;
 }
 
 .closeModal:hover,
@@ -142,12 +153,14 @@ body, input, button {
     color: #6d6d6d;
     text-decoration: none;
     cursor: pointer;
+    background-color: lightcyan;
 }
 
 .content .table {
     display: table;
     margin: 0 auto;
     border-collapse: collapse;
+    z-index: 1000;
 }
 
 .content .table .row, .content .table .header {
@@ -155,26 +168,39 @@ body, input, button {
 }
 
 .content .table .row:hover {
-    background-color: lightgreen;
+    background-color: rgba(144, 238, 144, 0.22);
     cursor: pointer;
 }
 
 .content .table span {
     display: table-cell;
     padding: 2px 5px;
-
+    max-width: 350px;
 }
 
 .content .table .row span {
     font-size: 15px;
 }
 
-.content .table .row span#delete:hover{
+.content .table .row span#id {
+    text-align: right;
+}
+
+.content .table .row #delete {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.content .table .row #delete :hover {
     background-color: yellow;
 }
 
-.content .table .row img{
+.content .table .row img {
     width: 10px;
+}
+
+.content .table .header {
+    z-index: 900;
 }
 
 .content .table .header span {
@@ -186,7 +212,7 @@ body, input, button {
     font-weight: bold;
 }
 
-.content .table .header span#del{
+.content .table .header span#del {
     background-color: transparent;
     border: 1px solid transparent;
 }

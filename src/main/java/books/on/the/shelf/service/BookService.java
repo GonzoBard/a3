@@ -12,7 +12,7 @@ public interface BookService
 
     Book read(Long id); //брать посмотреть
 
-    void delete(Book book); //убирать
+    void delete(Long id); //убирать
 
     List<Book> getAllBooksFromDB();
 }
