@@ -14,6 +14,11 @@ body, input, button {
     display: none;
 }
 
+.inactive{
+    color: lightgray;
+    pointer-events: none;
+}
+
 .wrapper {
     margin: 0 auto;
     padding-top: 1%;
@@ -76,20 +81,6 @@ body, input, button {
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.modal-content {
-    background-color: #fefefe;
-    border-radius: 5px;
-    margin: 5% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 450px; /* Could be more or less, depending on screen size */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
-
 @-webkit-keyframes animatetop {
     from {
         top: -300px;
@@ -110,6 +101,20 @@ body, input, button {
         top: 0;
         opacity: 1
     }
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 5px;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 450px; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
 }
 
 .modal .field {
@@ -186,7 +191,7 @@ body, input, button {
     text-align: right;
 }
 
-.content .table .row #delete {
+.content .table .row #newEdition, .content .table .row #delete {
     text-align: center;
     vertical-align: middle;
 }
@@ -195,8 +200,12 @@ body, input, button {
     background-color: yellow;
 }
 
-.content .table .row img {
-    width: 10px;
+.content .table .row #newEdition :hover {
+    background-color: blue;
+}
+
+.content .table .row #delete img {
+    width: 15px;
 }
 
 .content .table .header {
@@ -212,10 +221,12 @@ body, input, button {
     font-weight: bold;
 }
 
+/*
 .content .table .header span#del {
     background-color: transparent;
     border: 1px solid transparent;
 }
+*/
 
 
 

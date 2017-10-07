@@ -10,54 +10,93 @@
                 return document.getElementById('myModal');
             }
 
-            function open_modal(elem) {
-                var modal = get_modal();
+            function book_id() {
+                return document.querySelector("#book_id");
+            }
 
-                var book_id = modal.querySelector("#book_id");
-                var title = modal.querySelector("#book_title");
-                var author = modal.querySelector("#book_author");
-                var description = modal.querySelector("#book_description");
-                var isbn = modal.querySelector("#book_isbn");
-                var printYear = modal.querySelector("#book_printYear");
-                var readAlready = modal.querySelector("#book_readAlready");
+            function title() {
+                return document.querySelector("#book_title");
+            }
+
+            function author() {
+                return document.querySelector("#book_author");
+            }
+
+            function description() {
+                return document.querySelector("#book_description");
+            }
+
+            function isbn() {
+                return document.querySelector("#book_isbn");
+            }
+
+            function printYear() {
+                return document.querySelector("#book_printYear");
+            }
+
+            function readAlready() {
+                return document.querySelector("#book_readAlready");
+            }
+
+            function readAlreadyCheckedOnDBinfo(elem) {
+                var xReadAlready = elem.querySelector("#readAlready").innerHTML;
+                if (xReadAlready && xReadAlready === "true")
+                    readAlready().checked = true;
+                else
+                    readAlready().checked = false;
+            }
+
+            function newEditionClick(elem) {
+                elem.innerHTML = "new";
+            }
+
+            function open_modal(elem) {
+
+                get_modal().style.display = "block";
 
                 if (elem.classList.contains("row")) {
-                    book_id.value = elem.querySelector("#id").innerHTML;
-                    title.value = elem.querySelector("#title").innerHTML;
-                    author.value = elem.querySelector("#author").innerHTML;
-                    description.value = elem.querySelector("#description").innerHTML;
-                    isbn.value = elem.querySelector("#isbn").innerHTML;
-                    printYear.value = elem.querySelector("#printYear").innerHTML;
+                    book_id().value = elem.querySelector("#id").innerHTML;
+                    title().value = elem.querySelector("#title").innerHTML;
+                    author().value = elem.querySelector("#author").innerHTML;
+                    description().value = elem.querySelector("#description").innerHTML;
+                    isbn().value = elem.querySelector("#isbn").innerHTML;
+                    printYear().value = elem.querySelector("#printYear").innerHTML;
+                    var newEdition = elem.querySelector("#newEdition");
 
-                    var xReadAlready = elem.querySelector("#readAlready").innerHTML;
-                    if (xReadAlready && xReadAlready === "true")
-                        readAlready.checked = true;
-                    else
-                        readAlready.checked = false;
+                    if (newEdition.innerHTML === "new") {
+                        readAlready().checked = false;
+                        hidden(readAlready().parentNode.parentNode);
+                    }
+                    else {
+                        readAlreadyCheckedOnDBinfo(elem);
+                        visible(readAlready().parentNode.parentNode);
+                    }
 
-                    visible(book_id.parentNode.parentNode);
-                    visible(readAlready.parentNode.parentNode);
+                    visible(book_id().parentNode.parentNode);
+
+                    //author
+                    author().readOnly = true;
+                    author().classList.add("inactive");
+                    author().parentNode.parentNode.classList.add("inactive");
 
                 } else {
-                    book_id.value = null;
-                    title.value = null;
-                    author.value = null;
-                    description.value = null;
-                    isbn.value = null;
-                    printYear.value = null;
-                    readAlready.checked = false;
+                    book_id().value = null;
+                    title().value = null;
+                    author().value = null;
+                    description().value = null;
+                    isbn().value = null;
+                    printYear().value = null;
+                    readAlready().checked = false;
 
-                    hidden(book_id.parentNode.parentNode);
-                    hidden(readAlready.parentNode.parentNode);
-                }
+                    //author
+                    author().readOnly = false;
+                    author().classList.remove("inactive");
+                    author().parentNode.parentNode.classList.remove("inactive");
 
-                modal.style.display = "block";
-                document.onkeypress = function (evt) {
-                    evt = evt || window.event;
-                    if (evt.keyCode === 27) {
-                        close_modal();
-                    }
+                    hidden(book_id().parentNode.parentNode);
+                    hidden(readAlready().parentNode.parentNode);
                 }
+                setAvailabilityModalItems();
             }
 
             function hidden(elem) {
@@ -69,9 +108,47 @@
                 elem.classList.remove("hidden_element");
             }
 
+            function availabilityByAlreadyRead(elem) {
+
+                if (!readAlready().checked) {
+                    elem.readOnly = false;
+                    elem.classList.remove("inactive");
+                    elem.parentNode.parentNode.classList.remove("inactive");
+                }
+                else {
+                    if (!elem.readOnly)
+                        elem.readOnly = true;
+
+                    if (!elem.classList.contains("inactive"))
+                        elem.classList.add("inactive");
+
+                    if (!elem.parentNode.parentNode.classList.contains("inactive"))
+                        elem.parentNode.parentNode.classList.add("inactive");
+                }
+            }
+
+            function setAvailabilityModalItems() {
+                availabilityByAlreadyRead(title());
+                //availabilityByAlreadyRead(author());
+                availabilityByAlreadyRead(description());
+                availabilityByAlreadyRead(isbn());
+                availabilityByAlreadyRead(printYear());
+                availabilityByAlreadyRead(readAlready());
+            }
+
             function close_modal() {
                 get_modal().style.display = "none";
-                document.onkeypress = null;
+            }
+
+            function restoreUnusedNewEdition() {
+                var list = document.querySelectorAll("#newEdition");
+                for (var i = 0; i <= list.length; i++) {
+                    var newEdition = list[i];
+                    if (newEdition && newEdition.innerHTML === "new") {
+                        readAlreadyCheckedOnDBinfo(newEdition.parentNode);
+                        newEdition.innerHTML = "<img src=\"/pic/new.png\" alt=\"new\" onclick=\"newEditionClick(this.parentNode)\">";
+                    }
+                }
             }
 
             // When the user clicks anywhere outside of the modal, close it
@@ -109,7 +186,8 @@
                 <span>ISBN</span>
                 <span>Year</span>
                 <span>Read</span>
-                <span id="del">&nbsp;</span>
+                <span>New Edition</span>
+                <span>Delete</span>
             </div>
             <c:forEach items="${books}" var="i">
                 <div class="row" onclick="open_modal(this)">
@@ -120,6 +198,9 @@
                     <span id="isbn">${i.isbn}</span>
                     <span id="printYear">${i.printYear}</span>
                     <span id="readAlready">${i.readAlready}</span>
+                    <span id="newEdition">
+                        <img src="/pic/new.png" alt="new" onclick="newEditionClick(this.parentNode)">
+                    </span>
                     <span id="delete">
                         <a href="/book/delete?id=${i.id}" onclick="event.stopPropagation();">
                             <span>
@@ -134,16 +215,17 @@
 
 </div>
 
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" onclick="restoreUnusedNewEdition()">
 
-    <div class="modal-content">
-        <span class="closeModal" onclick="close_modal()">&nbsp;X&nbsp;</span><br>
-        <form id="elementForm" action="/book/create" method="post" onsubmit="close_modal()">
-            <div class="field" style="color: lightgrey">
+    <div class="modal-content" onclick="event.stopPropagation();">
+        <span class="closeModal" onclick="event.stopPropagation(); close_modal(); restoreUnusedNewEdition();">&nbsp;X&nbsp;</span><br>
+        <form id="elementForm" action="/book/create" method="post" onsubmit="event.stopPropagation(); close_modal()"
+              onclick="event.stopPropagation();">
+            <div class="field inactive">
                 <span class="label">id</span>
-                <span class="data" title="Идентификатор книги в БД"><input id="book_id" name="id" type="text" readonly
-                                                                           title="Идентификатор книги в БД"
-                                                                           style="color: lightgrey"></span>
+                <span class="data" title="Идентификатор книги в БД"><input id="book_id" class="inactive" name="id"
+                                                                           type="text" readonly
+                                                                           title="Идентификатор книги в БД"></span>
             </div>
             <div class="field">
                 <span class="label">Title</span>
@@ -174,11 +256,12 @@
                 <span class="label">Read alredy</span>
                 <span class="data">
                     <input id="book_readAlready" name="readAlready" type="checkbox"
-                           title="Читал ли кто-то эту книгу. Boolean">
+                           title="Читал ли кто-то эту книгу. Boolean"
+                           onchange="event.stopPropagation(); setAvailabilityModalItems()">
                 </span>
             </div>
             <div class="button">
-                <button type="submit">Send to server</button>
+                <button type="submit">Save</button>
             </div>
         </form>
     </div>
