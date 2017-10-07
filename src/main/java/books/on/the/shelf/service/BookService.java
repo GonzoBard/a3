@@ -2,6 +2,8 @@ package books.on.the.shelf.service;
 
 import books.on.the.shelf.Book;
 
+import java.util.List;
+
 public interface BookService
 {
     void create(Book book); //добавлять
@@ -11,4 +13,6 @@ public interface BookService
     Book read(Long id); //брать посмотреть
 
     void delete(Book book); //убирать
+
+    List<Book> getAllBooksFromDB();
 }

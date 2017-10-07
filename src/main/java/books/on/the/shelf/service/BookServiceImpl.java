@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("bookService")
 public class BookServiceImpl implements BookService
 {
@@ -21,6 +23,9 @@ public class BookServiceImpl implements BookService
     @Transactional
     public void create(Book book)
     {
+        if (book.getPrintYear() == null)
+            book.setPrintYear(0);
+        book.setReadAlready(false);
         dao.save(book);
     }
 
@@ -28,7 +33,7 @@ public class BookServiceImpl implements BookService
     @Transactional
     public void update(Book book)
     {
-        create(book);
+        dao.save(book);
     }
 
     @Override
@@ -38,9 +43,16 @@ public class BookServiceImpl implements BookService
     }
 
     @Override
+    public List<Book> getAllBooksFromDB()
+    {
+        return (List<Book>) dao.findAll();
+    }
+
+    @Override
     @Transactional
     public void delete(Book book)
     {
         dao.delete(book);
     }
+
 }

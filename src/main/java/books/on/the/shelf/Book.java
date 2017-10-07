@@ -24,10 +24,10 @@ public class Book
     @Column(name = "isbn")
     private String isbn; //ISBN книги. Можно использовать тип VARCHAR(20)
 
-    @Column(name = "printYear")
+    @Column(name = "print_year")
     private Integer printYear; //в каком году напечатана книга (INT)
 
-    @Column(name = "readAlready")
+    @Column(name = "read_already")
     private Boolean readAlready; //читал ли кто-то эту книгу. Это булево поле
 
     public Long getId()
@@ -110,6 +110,7 @@ public class Book
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", printYear=" + printYear +
+                ", readAlready=" + readAlready +
                 '}';
     }
 

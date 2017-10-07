@@ -78,8 +78,8 @@ body, input, button {
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 400px; /* Could be more or less, depending on screen size */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 450px; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -87,13 +87,25 @@ body, input, button {
 }
 
 @-webkit-keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
 @keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
 .modal .field {
@@ -102,7 +114,7 @@ body, input, button {
 
 .modal .label {
     display: inline-block;
-    width: 100px;
+    width: 150px;
     text-align: right;
     padding-right: 5px;
 }
@@ -131,4 +143,53 @@ body, input, button {
     text-decoration: none;
     cursor: pointer;
 }
+
+.content .table {
+    display: table;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.content .table .row, .content .table .header {
+    display: table-row;
+}
+
+.content .table .row:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.content .table span {
+    display: table-cell;
+    padding: 2px 5px;
+
+}
+
+.content .table .row span {
+    font-size: 15px;
+}
+
+.content .table .row span#delete:hover{
+    background-color: yellow;
+}
+
+.content .table .row img{
+    width: 10px;
+}
+
+.content .table .header span {
+    text-align: center;
+    background-color: #efefef;
+    border: 1px solid #e4e4e4;
+    border-spacing: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.content .table .header span#del{
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+
 
