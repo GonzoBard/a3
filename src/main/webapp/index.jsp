@@ -167,6 +167,24 @@
 
     <div class="header">
         <div class="items">
+            <div class="pageable">
+                <c:choose>
+                    <c:when test="${reqPage.isFirst()}">
+                        <span class="prev navButton inactive">&#60;</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/?page=${reqPage.getNumber()-1}"><span class="prev navButton">&#60;</span></a>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${reqPage.isLast()}">
+                        <span class="next navButton inactive">&#62;</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/?page=${reqPage.getNumber()+1}"><span class="next navButton">&#62;</span></a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
             <div class="add" onclick="open_modal(this)">
                 <img src="/pic/create.svg">&nbsp;<span>create</span>
             </div>
@@ -189,7 +207,7 @@
                 <span>New Edition</span>
                 <span>Delete</span>
             </div>
-            <c:forEach items="${requestedPage_content}" var="i">
+            <c:forEach items="${reqPage.getContent()}" var="i">
                 <div class="row" onclick="open_modal(this)">
                     <span id="id">${i.id}</span>
                     <span id="title">${i.title}</span>

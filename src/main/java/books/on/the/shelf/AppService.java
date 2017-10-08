@@ -6,8 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service("appService")
 public class AppService
 {
@@ -34,25 +32,14 @@ public class AppService
         dao.save(book);
     }
 
-    public Book read(Long id)
-    {
-        return dao.findOne(id);
-    }
-
-    public List<Book> getAllBooksFromDB()
-    {
-        return (List<Book>) dao.findAll();
-    }
-
-    public Page<Book> findAll(Pageable pageable)
-    {
-        return dao.findAll(pageable);
-    }
-
     @Transactional
     public void delete(Long id)
     {
         dao.delete(id);
     }
 
+    public Page<Book> findAll(Pageable pageable)
+    {
+        return dao.findAll(pageable);
+    }
 }

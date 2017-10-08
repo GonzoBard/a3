@@ -14,11 +14,6 @@ body, input, button {
     display: none;
 }
 
-.inactive{
-    color: lightgray;
-    pointer-events: none;
-}
-
 .wrapper {
     margin: 0 auto;
     padding-top: 1%;
@@ -31,7 +26,7 @@ body, input, button {
     border: 0px solid red;
 }
 
-.items {
+.header .items {
     width: 50%;
     margin: 0 auto;
     display: flex;
@@ -41,23 +36,44 @@ body, input, button {
     text-decoration: none;
 }
 
-.items div.add {
-    display: flex;
-    align-items: center;
-
+.header .items .pageable {
+    padding-right: 10px;
+    width: 120px;
+    border: 0px solid black;
 }
 
-.items div.add:hover {
+.header .items .pageable a{
+    text-decoration: none;
+    color: black;
+}
+
+.header .items .pageable .navButton {
+    border: 1px solid #b4b4b4;
+    padding: 1px 7px 2px;
+    border-radius: 3px;
+}
+
+.header .items .pageable .navButton:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.header .items .add {
+    display: flex;
+    align-items: center;
+}
+
+.header .items .add:hover {
     background-color: #ffffab;
     border-radius: 7px;
     cursor: pointer;
 }
 
-.items img {
+.header .items img {
     width: 20px;
 }
 
-.items input {
+.header .items input {
     width: 70%;
 }
 
@@ -221,12 +237,10 @@ body, input, button {
     font-weight: bold;
 }
 
-/*
-.content .table .header span#del {
-    background-color: transparent;
-    border: 1px solid transparent;
+.inactive {
+    color: lightgray;
+    pointer-events: none;
 }
-*/
 
 
 

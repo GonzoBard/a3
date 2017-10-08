@@ -27,10 +27,8 @@ public class AppController
     @RequestMapping("/")
     public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable)
     {
-        Page<Book> requestedPage = appService.findAll(pageable);
-        model.put("requestedPage_content", requestedPage.getContent());
-        model.put("requestedPage_totalElements", requestedPage.getTotalElements());
-        model.put("totalPages", requestedPage.getTotalPages());
+        Page<Book> reqPage = appService.findAll(pageable);
+        model.put("reqPage", reqPage.getNumber());
         return "index";
     }
 
