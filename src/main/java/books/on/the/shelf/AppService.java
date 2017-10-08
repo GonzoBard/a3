@@ -1,25 +1,24 @@
-package books.on.the.shelf.service;
+package books.on.the.shelf;
 
-import books.on.the.shelf.Book;
-import books.on.the.shelf.DAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("bookService")
-public class BookServiceImpl implements BookService
+@Service("appService")
+public class AppService
 {
     private final DAO dao;
 
     @Autowired
-    public BookServiceImpl(DAO dao)
+    public AppService(DAO dao)
     {
         this.dao = dao;
     }
 
-    @Override
     @Transactional
     public void create(Book book)
     {
@@ -27,7 +26,6 @@ public class BookServiceImpl implements BookService
         dao.save(book);
     }
 
-    @Override
     @Transactional
     public void update(Book book)
     {
@@ -36,19 +34,21 @@ public class BookServiceImpl implements BookService
         dao.save(book);
     }
 
-    @Override
     public Book read(Long id)
     {
         return dao.findOne(id);
     }
 
-    @Override
     public List<Book> getAllBooksFromDB()
     {
         return (List<Book>) dao.findAll();
     }
 
-    @Override
+    public Page<Book> findAll(Pageable pageable)
+    {
+        return dao.findAll(pageable);
+    }
+
     @Transactional
     public void delete(Long id)
     {

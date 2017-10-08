@@ -1,37 +1,36 @@
 package books.on.the.shelf;
 
-import books.on.the.shelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.awt.*;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @Controller
 public class AppController
 {
-    private final BookService bookService;
+    private final AppService appService;
 
     @Autowired
-    public AppController(BookService bookService)
+    public AppController(AppService appService)
     {
-        this.bookService = bookService;
+        this.appService = appService;
     }
 
     @RequestMapping("/")
-    public String index(Map<String, Object> model)
+    public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable)
     {
-        List<Book> list = bookService.getAllBooksFromDB();
-        model.put("books", list);
-        System.out.println("get index");
-        System.out.println(list);
+        Page<Book> requestedPage = appService.findAll(pageable);
+        model.put("requestedPage_content", requestedPage.getContent());
+        model.put("requestedPage_totalElements", requestedPage.getTotalElements());
+        model.put("totalPages", requestedPage.getTotalPages());
         return "index";
     }
 
@@ -42,10 +41,10 @@ public class AppController
 
         if (book.getId() == null)
         {
-            bookService.create(book);
+            appService.create(book);
         }
         else
-            bookService.update(book);
+            appService.update(book);
 
         return "redirect:/";
     }
@@ -54,8 +53,7 @@ public class AppController
     public String delete(@RequestParam Map<String, String> params)
     {
         System.out.println(params);
-        bookService.delete(Long.parseLong(params.get("id")));
+        appService.delete(Long.parseLong(params.get("id")));
         return "redirect:/";
     }
-
 }

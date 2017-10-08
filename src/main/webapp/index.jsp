@@ -189,7 +189,7 @@
                 <span>New Edition</span>
                 <span>Delete</span>
             </div>
-            <c:forEach items="${books}" var="i">
+            <c:forEach items="${requestedPage_content}" var="i">
                 <div class="row" onclick="open_modal(this)">
                     <span id="id">${i.id}</span>
                     <span id="title">${i.title}</span>
@@ -211,6 +211,7 @@
                 </div>
             </c:forEach>
         </div>
+
     </div>
 
 </div>
