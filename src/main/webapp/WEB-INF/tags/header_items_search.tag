@@ -3,10 +3,11 @@
 
 <c:set var="pageNumber" value="${respPage.getNumber()}"/>
 
-<h2>Search result for Field 'title'.<br> Request is <span style="color: blue;font-style: italic">${req}</span></h2>
+<div><a href="/">Go back to The Book Shelf</a></div>
+
+<h2>Request is <span style="color: blue;font-style: italic">${req}</span><br>search results for Field 'title'</h2>
 
 <div class="items">
-    <div><a href="/">Go back to The Book Shelf</a></div>
     <div class="pageable">
         <a href="/search?page=0&req=${req}"><span class="prev navButton">First</span></a>
         <c:choose>

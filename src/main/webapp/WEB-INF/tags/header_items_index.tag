@@ -30,6 +30,6 @@
     <span style="padding-left: 40px">Search</span>&nbsp;
     <form id="searchForm" action="/search" method="post">
         <input id="searchField" name="req" type="text" required
-               title="Поиск по полю 'title'">&nbsp;<img src="/pic/search.svg"></a>
+               title="Поиск по полю 'title'"><button type="submit" style="border: 0px;background-color: transparent; cursor: pointer;vertical-align: middle"><img src="/pic/search.svg"></button>
     </form>
 </div>
