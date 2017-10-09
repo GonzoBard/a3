@@ -59,7 +59,6 @@ public class AppController
     @RequestMapping(value = "/book/delete", method = RequestMethod.GET)
     public String delete(@RequestParam Map<String, String> params)
     {
-        System.out.println(params);
         appService.delete(Long.parseLong(params.get("id")));
         return "redirect:/?page=" + params.get("page");
     }
