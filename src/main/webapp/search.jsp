@@ -4,6 +4,10 @@
 
 <t:skeleton title="The Book Shelf">
 
+    <jsp:attribute name="head">
+        <script type="text/javascript" src="/js/modalWindow.js"></script>
+    </jsp:attribute>
+
     <jsp:body>
 
         <div class="wrapper">

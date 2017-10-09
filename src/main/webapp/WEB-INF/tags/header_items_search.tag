@@ -9,24 +9,26 @@
 
 <div class="items">
     <div class="pageable">
-        <a href="/search?page=0&req=${req}"><span class="prev navButton">First</span></a>
         <c:choose>
             <c:when test="${respPage.isFirst()}">
+                <span class="prev navButton inactive">First</span>
                 <span class="prev navButton inactive">&#60;</span>
             </c:when>
             <c:otherwise>
+                <a href="/search?page=0&req=${req}"><span class="prev navButton">First</span></a>
                 <a href="/search?page=${pageNumber-1}&req=${req}"><span class="prev navButton">&#60;</span></a>
             </c:otherwise>
         </c:choose>
         <c:choose>
             <c:when test="${respPage.isLast()}">
                 <span class="next navButton inactive">&#62;</span>
+                <span class="prev navButton inactive">Last</span>
             </c:when>
             <c:otherwise>
                 <a href="/search?page=${pageNumber+1}&req=${req}"><span class="next navButton">&#62;</span></a>
+                <a href="/search?page=${respPage.getTotalPages()-1}&req=${req}"><span class="prev navButton">Last</span></a>
             </c:otherwise>
         </c:choose>
-        <a href="/search?page=${respPage.getTotalPages()-1}&req=${req}"><span class="prev navButton">Last</span></a>
     </div>
 
 </div>

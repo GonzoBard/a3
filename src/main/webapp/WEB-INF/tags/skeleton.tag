@@ -17,20 +17,9 @@
     <meta name="theme-color" content="#ffffff">
     <%----%>
     <link rel="stylesheet" href="/css/global.css">
-    <script type="text/javascript" src="/js/modalWindow.js"></script>
-    
+    <script type="text/javascript" src="/js/global.js"></script>
+
     <jsp:invoke fragment="head"/>
-
-    <script type="text/javascript">
-        function hidden(elem) {
-            if (!elem.classList.contains("hidden_element"))
-                elem.classList.add("hidden_element");
-        }
-
-        function visible(elem) {
-            elem.classList.remove("hidden_element");
-        }
-    </script>
 
 </head>
 <body>
