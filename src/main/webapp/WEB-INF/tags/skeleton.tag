@@ -1,4 +1,4 @@
-<%@tag description="just template" pageEncoding="UTF-8" %>
+<%@tag description="skeleton" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" %>
 <%@attribute name="head" fragment="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

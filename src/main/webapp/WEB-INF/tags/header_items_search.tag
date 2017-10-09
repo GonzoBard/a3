@@ -1,4 +1,4 @@
-<%@tag description="table of books" pageEncoding="UTF-8" %>
+<%@tag description="header of search items" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="pageNumber" value="${respPage.getNumber()}"/>
