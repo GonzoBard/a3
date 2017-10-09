@@ -1,7 +1,7 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:skeleton title="The Book Shelf">
+<t:skeleton title="Search">
     <jsp:attribute name="head">
         <link rel="stylesheet" href="/css/global.css">
         <script type="text/javascript">
@@ -170,13 +170,13 @@
     <div class="header">
         <div class="items">
             <div class="pageable">
-                <a href="/?page=0"><span class="prev navButton">First</span></a>
+                <a href="/search?page=0"><span class="prev navButton">First</span></a>
                 <c:choose>
                     <c:when test="${reqPage.isFirst()}">
                         <span class="prev navButton inactive">&#60;</span>
                     </c:when>
                     <c:otherwise>
-                        <a href="/?page=${pageNumber-1}"><span class="prev navButton">&#60;</span></a>
+                        <a href="/search?page=${pageNumber-1}"><span class="prev navButton">&#60;</span></a>
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
@@ -184,19 +184,16 @@
                         <span class="next navButton inactive">&#62;</span>
                     </c:when>
                     <c:otherwise>
-                        <a href="/?page=${pageNumber+1}"><span class="next navButton">&#62;</span></a>
+                        <a href="/search?page=${pageNumber+1}"><span class="next navButton">&#62;</span></a>
                     </c:otherwise>
                 </c:choose>
-                <a href="/?page=${reqPage.getTotalPages()-1}"><span class="prev navButton">Last</span></a>
+                <a href="/search?page=${reqPage.getTotalPages()-1}"><span class="prev navButton">Last</span></a>
             </div>
             <div class="add" onclick="open_modal(this)">
                 <img src="/pic/create.svg">&nbsp;<span>create</span>
             </div>
             <span style="padding-left: 40px">Search</span>&nbsp;
-            <form id="searchForm" action="/search" method="post">
-                <input id="searchField" name="query" type="text" required
-                       title="Поиск по полю 'title'">&nbsp;<img src="/pic/search.svg"></a>
-            </form>
+            <input>&nbsp;<a href="http://google.ru" target="_blank" title="search"><img src="/pic/search.svg"></a>
         </div>
     </div>
 
@@ -245,8 +242,7 @@
 
     <div class="modal-content" onclick="event.stopPropagation();">
         <span class="closeModal" onclick="event.stopPropagation(); close_modal(); restoreUnusedNewEdition();">&nbsp;X&nbsp;</span><br>
-        <form id="elementForm" action="/book/create?page=${pageNumber}" method="post"
-              onsubmit="event.stopPropagation(); close_modal()" onclick="event.stopPropagation();">
+        <form id="elementForm" action="/book/create?page=${pageNumber}" method="post" onsubmit="event.stopPropagation(); close_modal()" onclick="event.stopPropagation();">
             <div class="field inactive">
                 <span class="label">id</span>
                 <span class="data" title="Идентификатор книги в БД"><input id="book_id" class="inactive" name="id"

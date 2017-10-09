@@ -32,6 +32,16 @@ public class AppController
         return "index";
     }
 
+    @RequestMapping("/search")
+    public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable, @ModelAttribute("searchQuery") SearchQuery searchQuery)
+    {
+        System.out.println("Query="+searchQuery.getQuery());
+        Page<Book> reqPage = appService.searchByTitle(searchQuery.getQuery(), pageable);
+        model.put("reqPage", reqPage);
+        return "search";
+    }
+
+
     @RequestMapping(value = "/book/create", method = RequestMethod.POST)
     public String create(@ModelAttribute("book") Book book, @RequestParam Map<String, String> params)
     {

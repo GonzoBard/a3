@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("appService")
 public class AppService
 {
@@ -41,5 +43,10 @@ public class AppService
     public Page<Book> findAll(Pageable pageable)
     {
         return dao.findAll(pageable);
+    }
+
+    public Page<Book> searchByTitle(String substring, Pageable pageable)
+    {
+        return dao.searchByTitle(substring, pageable);
     }
 }
