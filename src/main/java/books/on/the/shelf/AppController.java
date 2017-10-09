@@ -28,23 +28,19 @@ public class AppController
     public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable)
     {
         Page<Book> reqPage = appService.findAll(pageable);
-        model.put("reqPage", reqPage.getNumber());
+        model.put("reqPage", reqPage);
         return "index";
     }
 
     @RequestMapping(value = "/book/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute("book") Book book)
+    public String create(@ModelAttribute("book") Book book, @RequestParam Map<String, String> params)
     {
-        System.out.println("!!!!!" + book);
-
         if (book.getId() == null)
-        {
             appService.create(book);
-        }
         else
             appService.update(book);
 
-        return "redirect:/";
+        return "redirect:/?page=" + params.get("page");
     }
 
     @RequestMapping(value = "/book/delete", method = RequestMethod.GET)
@@ -52,6 +48,6 @@ public class AppController
     {
         System.out.println(params);
         appService.delete(Long.parseLong(params.get("id")));
-        return "redirect:/";
+        return "redirect:/?page=" + params.get("page");
     }
 }

@@ -38,11 +38,11 @@ body, input, button {
 
 .header .items .pageable {
     padding-right: 10px;
-    width: 120px;
+    width: 380px;
     border: 0px solid black;
 }
 
-.header .items .pageable a{
+.header .items .pageable a {
     text-decoration: none;
     color: black;
 }
@@ -196,15 +196,22 @@ body, input, button {
 .content .table span {
     display: table-cell;
     padding: 2px 5px;
-    max-width: 350px;
+    max-width: 250px;
 }
 
 .content .table .row span {
     font-size: 15px;
 }
 
-.content .table .row span#id {
-    text-align: right;
+.content .table .row span#title {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.content .table .row span#description {
+    font-size: 11px;
+    vertical-align: top;
 }
 
 .content .table .row #newEdition, .content .table .row #delete {

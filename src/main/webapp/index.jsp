@@ -55,7 +55,7 @@
                 get_modal().style.display = "block";
 
                 if (elem.classList.contains("row")) {
-                    book_id().value = elem.querySelector("#id").innerHTML;
+                    book_id().value = elem.querySelector("#id").dataset.id;
                     title().value = elem.querySelector("#title").innerHTML;
                     author().value = elem.querySelector("#author").innerHTML;
                     description().value = elem.querySelector("#description").innerHTML;
@@ -165,15 +165,18 @@
 
 <div class="wrapper">
 
+    <c:set var="pageNumber" value="${reqPage.getNumber()}"/>
+
     <div class="header">
         <div class="items">
             <div class="pageable">
+                <a href="/?page=0"><span class="prev navButton">First</span></a>
                 <c:choose>
                     <c:when test="${reqPage.isFirst()}">
                         <span class="prev navButton inactive">&#60;</span>
                     </c:when>
                     <c:otherwise>
-                        <a href="/?page=${reqPage.getNumber()-1}"><span class="prev navButton">&#60;</span></a>
+                        <a href="/?page=${pageNumber-1}"><span class="prev navButton">&#60;</span></a>
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
@@ -181,9 +184,10 @@
                         <span class="next navButton inactive">&#62;</span>
                     </c:when>
                     <c:otherwise>
-                        <a href="/?page=${reqPage.getNumber()+1}"><span class="next navButton">&#62;</span></a>
+                        <a href="/?page=${pageNumber+1}"><span class="next navButton">&#62;</span></a>
                     </c:otherwise>
                 </c:choose>
+                <a href="/?page=${reqPage.getTotalPages()-1}"><span class="prev navButton">Last</span></a>
             </div>
             <div class="add" onclick="open_modal(this)">
                 <img src="/pic/create.svg">&nbsp;<span>create</span>
@@ -197,7 +201,7 @@
     <div class="content">
         <div class="table">
             <div class="header">
-                <span>ID</span>
+                <span>&#35;</span>
                 <span>Title</span>
                 <span>Author</span>
                 <span>Description</span>
@@ -207,9 +211,9 @@
                 <span>New Edition</span>
                 <span>Delete</span>
             </div>
-            <c:forEach items="${reqPage.getContent()}" var="i">
+            <c:forEach items="${reqPage.getContent()}" var="i" varStatus="loop">
                 <div class="row" onclick="open_modal(this)">
-                    <span id="id">${i.id}</span>
+                    <span id="id" data-id="${i.id}">${pageNumber*10+loop.count}.</span>
                     <span id="title">${i.title}</span>
                     <span id="author">${i.author}</span>
                     <span id="description">${i.description}</span>
@@ -220,7 +224,8 @@
                         <img src="/pic/new.png" alt="new" onclick="newEditionClick(this.parentNode)">
                     </span>
                     <span id="delete">
-                        <a href="/book/delete?id=${i.id}" onclick="event.stopPropagation();">
+                        <a href="/book/delete?id=${i.id}&page=${pageNumber}"
+                           onclick="event.stopPropagation();">
                             <span>
                                 <img src="/pic/delete.svg" alt="delete">
                             </span>
@@ -238,8 +243,8 @@
 
     <div class="modal-content" onclick="event.stopPropagation();">
         <span class="closeModal" onclick="event.stopPropagation(); close_modal(); restoreUnusedNewEdition();">&nbsp;X&nbsp;</span><br>
-        <form id="elementForm" action="/book/create" method="post" onsubmit="event.stopPropagation(); close_modal()"
-              onclick="event.stopPropagation();">
+        <form id="elementForm" action="/book/create?page=${pageNumber}" method="post"
+              onsubmit="event.stopPropagation(); close_modal()" onclick="event.stopPropagation();">
             <div class="field inactive">
                 <span class="label">id</span>
                 <span class="data" title="Идентификатор книги в БД"><input id="book_id" class="inactive" name="id"
