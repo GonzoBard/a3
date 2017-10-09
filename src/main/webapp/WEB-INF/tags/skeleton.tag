@@ -1,7 +1,7 @@
 <%@tag description="just template" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" %>
 <%@attribute name="head" fragment="true" %>
-<%@attribute name="pageBody" fragment="true" required="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +16,26 @@
     <link rel="mask-icon" href="/pic/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
     <%----%>
+    <link rel="stylesheet" href="/css/global.css">
+    <script type="text/javascript" src="/js/modalWindow.js"></script>
+    
     <jsp:invoke fragment="head"/>
+
+    <script type="text/javascript">
+        function hidden(elem) {
+            if (!elem.classList.contains("hidden_element"))
+                elem.classList.add("hidden_element");
+        }
+
+        function visible(elem) {
+            elem.classList.remove("hidden_element");
+        }
+    </script>
+
 </head>
 <body>
-<jsp:invoke fragment="pageBody"/>
+
+<jsp:doBody/>
+
 </body>
 </html>

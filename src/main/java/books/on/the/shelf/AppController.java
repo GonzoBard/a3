@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,17 +26,21 @@ public class AppController
     @RequestMapping("/")
     public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable)
     {
-        Page<Book> reqPage = appService.findAll(pageable);
-        model.put("reqPage", reqPage);
+        Page<Book> respPage = appService.findAll(pageable);
+        model.put("respPage", respPage);
         return "index";
     }
 
     @RequestMapping("/search")
-    public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable, @ModelAttribute("searchQuery") SearchQuery searchQuery)
+    public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable, @ModelAttribute("searchQuery") SearchReqHandler searchReqHandler, @RequestParam Map<String, String> params)
     {
-        System.out.println("Query="+searchQuery.getQuery());
-        Page<Book> reqPage = appService.searchByTitle(searchQuery.getQuery(), pageable);
-        model.put("reqPage", reqPage);
+        String req = params.get("req");
+        if (req == null)
+            req = searchReqHandler.getReq();
+
+        Page<Book> respPage = appService.searchByTitle(req, pageable);
+        model.put("respPage", respPage);
+        model.put("req", req);
         return "search";
     }
 
