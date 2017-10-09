@@ -1,4 +1,4 @@
-USE a3;
+USE test;
 
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
@@ -23,7 +23,8 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 INSERT INTO `book`
-VALUES (38, 'Java Concurrency in Practice', 'просто хорошая книга', 'Brian Goetz', '0-321-34960-1', 2006, 0),
+VALUES
+  (38, 'Java Concurrency in Practice', 'просто хорошая книга', 'Brian Goetz', '0-321-34960-1', 2006, 0),
   (39, 'Head First Design Patterns', 'This book will load patterns into your brain in a way that sticks. In a way that lets you put them to work immediately. In a way that makes you better at solving software design problems.', 'Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra', '978-0-596-00712-6', 2004, 0),
   (40, 'Algorithms', 'Essential Information about Algorithms and Data Structures', 'Robert Sedgewick, Kevin Wayne', '978-0-321-57351-3', 2011, 0),
   (41, 'Linux System Programming', 'Talking Directly to the Kernel and C Library', 'Robert Love', '978-1-44933-953-1', 2013, 0),
