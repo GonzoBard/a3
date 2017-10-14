@@ -11,8 +11,8 @@
                 <span class="prev navButton inactive">&#60;</span>
             </c:when>
             <c:otherwise>
-                <a href="/?page=0"><span class="prev navButton">First</span></a>
-                <a href="/?page=${pageNumber-1}"><span class="prev navButton">&#60;</span></a>
+                <a href="${pageContext.request.contextPath}/?page=0"><span class="prev navButton">First</span></a>
+                <a href="${pageContext.request.contextPath}/?page=${pageNumber-1}"><span class="prev navButton">&#60;</span></a>
             </c:otherwise>
         </c:choose>
         <c:choose>
@@ -21,17 +21,17 @@
                 <span class="prev navButton inactive">Last</span>
             </c:when>
             <c:otherwise>
-                <a href="/?page=${pageNumber+1}"><span class="next navButton">&#62;</span></a>
-                <a href="/?page=${respPage.getTotalPages()-1}"><span class="prev navButton">Last</span></a>
+                <a href="${pageContext.request.contextPath}/?page=${pageNumber+1}"><span class="next navButton">&#62;</span></a>
+                <a href="${pageContext.request.contextPath}/?page=${respPage.getTotalPages()-1}"><span class="prev navButton">Last</span></a>
             </c:otherwise>
         </c:choose>
     </div>
     <div class="add" onclick="open_modal(this)">
-        <img src="/pic/create.svg">&nbsp;<span>create</span>
+        <img src="${pageContext.request.contextPath}/static/pic/create.svg">&nbsp;<span>create</span>
     </div>
     <span style="padding-left: 40px">Search</span>&nbsp;
-    <form id="searchForm" action="/search" method="post">
+    <form id="searchForm" action="${pageContext.request.contextPath}/search" method="post">
         <input id="searchField" name="req" type="text" required
-               title="Поиск по полю 'title'"><button type="submit" style="border: 0px;background-color: transparent; cursor: pointer;vertical-align: middle"><img src="/pic/search.svg"></button>
+               title="Поиск по полю 'title'"><button type="submit" style="border: 0;background-color: transparent; cursor: pointer;vertical-align: middle"><img src="${pageContext.request.contextPath}/static/pic/search.svg"></button>
     </form>
 </div>

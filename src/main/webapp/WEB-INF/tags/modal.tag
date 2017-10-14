@@ -7,7 +7,7 @@
 
     <div class="modal-content" onclick="event.stopPropagation();">
         <span class="closeModal" onclick="event.stopPropagation(); close_modal(); restoreUnusedNewEdition();">&nbsp;X&nbsp;</span><br>
-        <form id="elementForm" action="/book/create?page=${pageNumber}" method="post"
+        <form id="elementForm" action="${pageContext.request.contextPath}/book/create?page=${pageNumber}" method="post"
               onsubmit="event.stopPropagation(); close_modal()" onclick="event.stopPropagation();">
             <div class="field inactive">
                 <span class="label">id</span>

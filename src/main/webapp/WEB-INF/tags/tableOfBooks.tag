@@ -25,12 +25,12 @@
             <span id="printYear">${i.printYear}</span>
             <span id="readAlready">${i.readAlready}</span>
             <span id="newEdition">
-                <img src="/pic/new.png" alt="new" onclick="newEditionClick(this.parentNode)">
+                <img src="${pageContext.request.contextPath}/static/pic/new.png" alt="new" onclick="newEditionClick(this.parentNode)">
             </span>
             <span id="delete">
-                <a href="/book/delete?id=${i.id}&page=${pageNumber}" onclick="event.stopPropagation();">
+                <a href="${pageContext.request.contextPath}/book/delete?id=${i.id}&page=${pageNumber}" onclick="event.stopPropagation();">
                     <span>
-                        <img src="/pic/delete.svg" alt="delete">
+                        <img src="${pageContext.request.contextPath}/static/pic/delete.svg" alt="delete">
                     </span>
                 </a>
             </span>

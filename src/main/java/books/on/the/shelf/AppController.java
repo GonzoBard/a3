@@ -32,7 +32,7 @@ public class AppController
     }
 
     @RequestMapping("/search")
-    public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable, @ModelAttribute("searchQuery") SearchReqHandler searchReqHandler, @RequestParam Map<String, String> params)
+    public String index(Map<String, Object> model, @PageableDefault(page = 0, size = 10) Pageable pageable, @ModelAttribute("req") SearchReqHandler searchReqHandler, @RequestParam Map<String, String> params)
     {
         String req = params.get("req");
         if (req == null)

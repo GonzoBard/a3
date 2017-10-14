@@ -5,7 +5,7 @@
 <t:skeleton title="Search">
 
     <jsp:attribute name="head">
-        <script type="text/javascript" src="/js/modalWindow.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/modalWindow.js"></script>
     </jsp:attribute>
 
     <jsp:body>
